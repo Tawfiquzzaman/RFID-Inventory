@@ -14,9 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StoreReceiveTest">
-        <activity android:name=".stockreceive.WithoutRFIDTag"></activity>
+        <activity android:name=".itemsetting.itemsetting"></activity>
+        <activity android:name=".stockreceive.withoutrfidScanner" />
+        <activity android:name=".page3.page3" />
+        <activity android:name=".stockreceive.WithoutRFIDTag" />
         <activity android:name=".stockreceive.page1" />
-        <activity android:name=".StockReceive.page1" />
         <activity android:name=".CodeGenerator.generatecode" />
         <activity android:name=".CodeGenerator.CodeGenerator" />
         <activity android:name=".Scanner" />

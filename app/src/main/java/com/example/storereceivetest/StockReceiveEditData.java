@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.storereceivetest.Connection.ConnectionClass;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,7 +32,6 @@ import okhttp3.Response;
 
 public class StockReceiveEditData extends AppCompatActivity {
 
-    TextView text;
     private EditText edittext;
     private Object value2;
     Spinner spinner;
@@ -138,7 +139,7 @@ public class StockReceiveEditData extends AppCompatActivity {
 //        Log.d("OKHTTP", "Function called");
         value2 = edittext.getText().toString();
 //        Log.d("OKHTTP", "itemcode =" + value2);
-        String url = "http://192.168.0.165/iot_project/testsubmission.php?itemcode='"+ value2 +"'&RFID_id='" + finalValue + "'";
+        String url = "http://192.168.0.167/iot_project/testsubmission.php?itemcode='"+ value2 +"'&RFID_id='" + finalValue + "'";
 //        Log.d("OKHTTP", url);
         OkHttpClient client = new OkHttpClient();
 //        Log.d("OKHTTP", "Client created");
@@ -189,6 +190,7 @@ public class StockReceiveEditData extends AppCompatActivity {
         String connectionURL = null;
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
+//            connectionURL = "jdbc:jtds:sqlserver://192.168.0.167/AED_aw;instance=MSSQLSERVER;user=waiyuanaw";
             connectionURL = "jdbc:jtds:sqlserver://"+ server +"/"+database+";user="+ user +";password="+ password+";";
             Log.e("SQL", connectionURL);
             connection = DriverManager.getConnection(connectionURL);
@@ -197,5 +199,4 @@ public class StockReceiveEditData extends AppCompatActivity {
         }
         return connection;
     }
-
 }

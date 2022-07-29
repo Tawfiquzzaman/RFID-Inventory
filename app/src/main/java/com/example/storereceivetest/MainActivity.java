@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.storereceivetest.CodeGenerator.CodeGenerator;
+import com.example.storereceivetest.itemsetting.itemsetting;
+import com.example.storereceivetest.page3.page3;
 import com.example.storereceivetest.stockreceive.page1;
 
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_main);
 
-        contributeCard: CardView = findViewById(R.id.btnStockReceive);
+        contributeCard: CardView = findViewById(R.id.btnpage1);
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,11 +41,29 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        contributeCard: CardView = findViewById(R.id.btncodegenerator);
+        contributeCard: CardView = findViewById(R.id.btnpage2);
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(getApplicationContext(), CodeGenerator.class);
+                startActivity(i);
+            }
+        });
+
+        contributeCard: CardView = findViewById(R.id.btnpage3);
+        ((View) CardView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getApplicationContext(), page3.class);
+                startActivity(i);
+            }
+        });
+
+        contributeCard: CardView = findViewById(R.id.btnpage4);
+        ((View) CardView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getApplicationContext(), itemsetting.class);
                 startActivity(i);
             }
         });

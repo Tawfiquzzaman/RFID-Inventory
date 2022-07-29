@@ -1,18 +1,27 @@
 package com.example.storereceivetest.CodeGenerator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dantsu.escposprinter.connection.tcp.TcpConnection;
+import com.example.storereceivetest.CodeGenerator.async.AsyncEscPosPrint;
+import com.example.storereceivetest.CodeGenerator.async.AsyncEscPosPrinter;
+import com.example.storereceivetest.CodeGenerator.async.AsyncTcpEscPosPrint;
+import com.example.storereceivetest.MainActivity;
 import com.example.storereceivetest.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -24,6 +33,7 @@ public class generatecode extends AppCompatActivity {
     private EditText editText;
     private ImageView imageView;
     private Button printbutton;
+    private ImageButton backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,16 @@ public class generatecode extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         printbutton = findViewById(R.id.printbutton);
 
+
+        backbutton = findViewById(R.id.backbutton);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getApplicationContext(), CodeGenerator.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(i);
+            }
+        });
 
         printbutton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -127,7 +147,7 @@ public class generatecode extends AppCompatActivity {
     }
 
 //    public void printTcp() {
-//        final String ipAddress = "";
+//        final String ipAddress = "192.168.0.165";
 //        final String portAddress = "";
 //
 //        try {

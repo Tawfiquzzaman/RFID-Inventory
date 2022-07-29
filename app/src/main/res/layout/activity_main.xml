@@ -18,6 +18,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/backbutton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_back"
+        android:background="@drawable/ic_wave_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -123,7 +133,7 @@
             app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnStockReceive"
+                android:id="@+id/btnpage1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -173,7 +183,7 @@
             app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btncodegenerator"
+                android:id="@+id/btnpage2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -193,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Code Generator"
+                    android:text="Print Label"
                     android:textAllCaps="true"
                     android:textColor="@color/green_500"
                     android:textSize="14sp"
@@ -235,6 +245,7 @@
             app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnpage3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -254,7 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="LEARN"
+                    android:text="Serial Setting"
                     android:textAllCaps="true"
                     android:textColor="@color/green_500"
                     android:textSize="14sp"
@@ -283,6 +294,7 @@
             app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnpage4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -302,7 +314,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="INTERESTS"
+                    android:text="Item Setting"
                     android:textAllCaps="true"
                     android:textColor="@color/green_500"
                     android:textSize="14sp"
@@ -325,6 +337,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+        android:visibility="invisible"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -384,12 +397,12 @@
             android:layout_height="128dp"
             android:layout_margin="8dp"
             android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:clickable="true"
             android:elevation="12dp"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="8dp"
-            android:layout_marginLeft="16dp">
+            app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
