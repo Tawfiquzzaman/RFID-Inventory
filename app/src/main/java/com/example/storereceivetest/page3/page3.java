@@ -49,6 +49,7 @@ public class page3 extends AppCompatActivity {
         save = findViewById(R.id.Save);
         backbutton = findViewById(R.id.backbutton);
         output.setText(readFile());
+        String pattern =  "[A-Z]+-[0-9]+";
 
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +63,7 @@ public class page3 extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!enterText.getText().toString().isEmpty()) {
+                if (!enterText.getText().toString().isEmpty() && enterText.getText().toString().matches(pattern)) {
                 builder.setTitle("Change Serial No");
                 builder.setMessage("Are you sure, You wanted to change the Serial No?");
                 builder.setPositiveButton("yes",
@@ -123,7 +124,11 @@ public class page3 extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 }else if (enterText.getText().toString().isEmpty()){
-                    Toast.makeText(page3.this, "New Serial No cannot be empty", Toast.LENGTH_LONG).show();
+                    enterText.requestFocus();
+                    enterText.setError("FIELD CANNOT BE EMPTY");
+                }else {
+                    enterText.requestFocus();
+                    enterText.setError("Input format should be [A-Z]-[0-9]");
                 }
             }
         });
@@ -138,7 +143,6 @@ public class page3 extends AppCompatActivity {
             String line;
             while ((line = br.readLine()) != null) {
                 text.append(line);
-                text.append('\n');
             }
             br.close();
         } catch (IOException e) { }

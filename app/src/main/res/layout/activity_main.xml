@@ -12,18 +12,18 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:background="@drawable/custom_rectangle"
+        android:layout_height="200dp"
+        android:background="@drawable/wave__4_"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/backbutton"
+        android:id="@+id/expanded_menubutton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_back"
-        android:background="@drawable/ic_wave_background"
+        android:src="@drawable/ic_baseline_menu_24"
+        android:background="@color/colorblue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -69,11 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Welcome to Prisma"
                 android:textAllCaps="true"
-                android:textColor="@color/green_500"
+                android:textColor="@color/green_700"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -441,6 +440,16 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/viewBotton"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="540dp"
+        android:background="@drawable/wave__2_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,127 +6,185 @@
     android:layout_height="match_parent"
     tools:context=".StockReceiveEditData">
 
-    <Button
-        android:id="@+id/buttonbarcode"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="175dp"
-        android:layout_marginEnd="80dp"
-        android:background="#9EACF8"
-        android:onClick="onClick"
-        android:text="Bar Code"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/buttonqrcode"
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/wave__4_"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="276dp"
-        android:text="ID"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+    <ImageButton
+        android:id="@+id/backbutton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_back"
+        android:background="@color/colorblue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="296dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="30dp"
-        android:background="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginBottom="87dp"
-        android:text="Mold Code         "
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonbarcode"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="218dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="32dp"
-        android:background="#CFC1C1"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/buttonqrcode"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="32dp"
-        android:background="#9EACF8"
-        android:onClick="onClick"
-        android:text="QR Code"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonbarcode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonbarcode"
-        app:layout_constraintTop_toTopOf="@+id/buttonbarcode" />
-
-    <Button
-        android:id="@+id/button"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:onClick="callFirstActivity"
-        android:text="cancel"
-        app:layout_constraintStart_toStartOf="@+id/buttonbarcode"
-        app:layout_constraintTop_toBottomOf="@+id/buttonbarcode" />
-
-    <Button
-        android:id="@+id/Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="6dp"
-        android:onClick="onClick"
-        android:text="Confirm"
-        app:layout_constraintEnd_toEndOf="@+id/buttonqrcode"
-        app:layout_constraintTop_toBottomOf="@+id/buttonqrcode" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="177dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="365dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.025"
+        android:text="PRISMA"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnwithrfidtag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView6"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:text="ID"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="24sp"-->
+<!--                android:textStyle="bold"-->
+<!--                tools:layout_editor_absoluteX="62dp"-->
+<!--                tools:layout_editor_absoluteY="28dp" />-->
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="ID: "
+                android:textAllCaps="true"
+                android:textColor="@color/green_500"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                android:id = "@+id/textView4"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Mold Code  :"
+                android:textAllCaps="true"
+                android:textColor="@color/green_500"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:id = "@+id/editTextTextPersonName"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black">
+            </EditText>
+
+            <Button
+                android:id="@+id/buttonqrcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/green_500"
+                android:text="QR Code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.939"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+                />
+
+
+            <Button
+                android:id="@+id/Save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/green_500"
+                android:text="Confirm"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+            <!--    <Spinner-->
+            <!--        android:id="@+id/spinner"-->
+            <!--        android:layout_width="177dp"-->
+            <!--        android:layout_height="42dp"-->
+            <!--        android:layout_marginBottom="365dp"-->
+            <!--        android:visibility="invisible"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/viewBotton"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="540dp"
+        android:background="@drawable/wave__2_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
