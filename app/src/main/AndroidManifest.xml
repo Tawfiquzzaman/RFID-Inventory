@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
 
     <application
         android:allowBackup="true"
@@ -14,9 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StoreReceiveTest">
+        <activity android:name="com.example.NavigationDrawer.AboutUs"></activity>
         <activity android:name=".itemsetting.itemsetting" />
         <activity android:name=".stockreceive.withoutrfidScanner" />
-        <activity android:name=".page3.page3" />
+        <activity android:name="com.example.NavigationDrawer.SetSerialNo" />
         <activity android:name=".stockreceive.WithoutRFIDTag" />
         <activity android:name=".stockreceive.page1" />
         <activity android:name=".CodeGenerator.generatecode" />

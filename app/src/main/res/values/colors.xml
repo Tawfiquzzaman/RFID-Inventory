@@ -14,6 +14,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorblue">##2596be</color>
+    <color name="colorblue">#5E26FF</color>
+    <color name="Purplepink">#FFEBFF</color>
 
 </resources>

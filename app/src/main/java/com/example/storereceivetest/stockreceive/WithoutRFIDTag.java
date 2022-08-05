@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -11,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,9 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.storereceivetest.Connection.ConnectionClass;
-import com.example.storereceivetest.MainActivity;
 import com.example.storereceivetest.R;
-import com.example.storereceivetest.page3.page3;
 
 
 import java.io.BufferedReader;
@@ -34,16 +32,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class WithoutRFIDTag extends AppCompatActivity {
 
     Connection con;
     private ImageButton backbutton;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +57,16 @@ public class WithoutRFIDTag extends AppCompatActivity {
         Button Savebutton = findViewById(R.id.Save);
         EditText itemcode = findViewById(R.id.itemcode);
         Button qrscanner = findViewById(R.id.buttonqrcode);
+        EditText input = findViewById(R.id.itemcode);
+        builder = new AlertDialog.Builder(this);
 
         output.setText(readFile());
 
-        String sessionId = getIntent().getStringExtra("Itemcode");
-        if (sessionId != null) {
-            itemcode.setText(sessionId);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("Itemcode");
+            itemcode.setText(value);
         }
-
 
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +97,7 @@ public class WithoutRFIDTag extends AppCompatActivity {
                     if (con == null) {
                         Log.e("SQL", "Connection Fail");
                     } else {
+                        Savebutton.setClickable(false);
                         String queryitemcode = "SELECT itemcode from [dbo].[item] WHERE itemcode ='" + itemcode.getText().toString() + "';";
                         PreparedStatement stmtitemcode = con.prepareStatement(queryitemcode);
                         ResultSet rsitemcode = stmtitemcode.executeQuery();
@@ -304,8 +303,19 @@ public class WithoutRFIDTag extends AppCompatActivity {
                                 writer.append(SNno);
                                 writer.flush();
                                 writer.close();
-                                Toast.makeText(WithoutRFIDTag.this, "Stock Receive Done", Toast.LENGTH_LONG).show();
-                                finish();
+
+                                builder.setTitle("Stock Receive");
+                                builder.setMessage("Your data has been recorded");
+                                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(WithoutRFIDTag.this, "Stock Receive Done", Toast.LENGTH_LONG).show();
+                                        finish();
+                                    }
+                                });
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+
                             } catch (Exception e) {
                             }
 

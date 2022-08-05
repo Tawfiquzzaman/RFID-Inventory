@@ -27,36 +27,29 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
     @NonNull
     @Override
     public CourseAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // to inflate the layout for each item of recycler view.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemcard_layout, parent, false);
         return new Viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.Viewholder holder, int position) {
-        // to set data to textview and imageview of each card layout
         CourseModel model = courseModelArrayList.get(position);
         holder.courseNameTV.setText(model.getCourse_name());
         holder.courseRatingTV.setText("UOM: " + model.getCourse_rating());
-        //holder.courseIV.setImageResource(model.getCourse_image());
     }
 
     @Override
     public int getItemCount() {
-        // this method is used for showing number
-        // of card items in recycler view.
         return courseModelArrayList.size();
     }
 
-    // View holder class for initializing of
-    // your views such as TextView and Imageview.
+
     public class Viewholder extends RecyclerView.ViewHolder {
         private ImageView courseIV;
         private TextView courseNameTV, courseRatingTV;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            //courseIV = itemView.findViewById(R.id.idIVCourseImage);
             courseNameTV = itemView.findViewById(R.id.idTVCourseName);
             courseRatingTV = itemView.findViewById(R.id.idTVCourseRating);
         }

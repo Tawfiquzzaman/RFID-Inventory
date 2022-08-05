@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/_2501"
     tools:context=".stockreceive.page1">
 
     <View
@@ -36,7 +37,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
-        android:text="PRISMA"
+        android:text="Stock Receive"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"

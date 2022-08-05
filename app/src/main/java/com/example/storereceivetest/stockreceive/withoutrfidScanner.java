@@ -36,8 +36,7 @@ public class withoutrfidScanner extends AppCompatActivity {
                     public void run() {
                         Toast.makeText(withoutrfidScanner.this, result.getText(), Toast.LENGTH_SHORT).show(); //Show Toast
 
-
-                        Intent i =new Intent(getApplicationContext(), StockReceiveEditData.class);
+                        Intent i =new Intent(getApplicationContext(),WithoutRFIDTag.class);
                         i.putExtra("Itemcode",result.getText());
                         startActivity(i);
 

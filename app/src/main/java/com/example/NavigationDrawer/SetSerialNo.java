@@ -1,4 +1,4 @@
-package com.example.storereceivetest.page3;
+package com.example.NavigationDrawer;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,7 +24,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class page3 extends AppCompatActivity {
+public class SetSerialNo extends AppCompatActivity {
 
     Button save;
     AlertDialog.Builder builder;
@@ -74,7 +73,7 @@ public class page3 extends AppCompatActivity {
                                 builder.setTitle("Please Enter the Password");
                                 builder.setMessage("Are you sure, You wanted to make decision?");
 
-                                final EditText passowrd = new EditText(page3.this);
+                                final EditText passowrd = new EditText(SetSerialNo.this);
 
                                 builder.setView(passowrd);
 
@@ -84,7 +83,7 @@ public class page3 extends AppCompatActivity {
                                                 String pw = passowrd.getText().toString();
                                                 String pwd = "Prisma123";
                                                 if(pw.equals(pwd)){
-                                                    File file = new File(page3.this.getFilesDir(), "SerialNo");
+                                                    File file = new File(SetSerialNo.this.getFilesDir(), "SerialNo");
                                                     if (!file.exists()) {
                                                         file.mkdir();
                                                     }
@@ -95,12 +94,12 @@ public class page3 extends AppCompatActivity {
                                                         writer.flush();
                                                         writer.close();
                                                         output.setText(readFile());
-                                                        Toast.makeText(page3.this, "Saved your Changed", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(SetSerialNo.this, "Saved your Changed", Toast.LENGTH_LONG).show();
                                                         finish();
                                                     } catch (Exception e) {
                                                     }
                                                 }else{
-                                                    Toast.makeText(page3.this, "Wrong password", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(SetSerialNo.this, "Wrong password", Toast.LENGTH_LONG).show();
                                                     finish();
                                                 }
                                             }
@@ -136,7 +135,7 @@ public class page3 extends AppCompatActivity {
 
 
     private String readFile() {
-        File fileEvents = new File(page3.this.getFilesDir()+"/SerialNo/SerialNo");
+        File fileEvents = new File(SetSerialNo.this.getFilesDir()+"/SerialNo/SerialNo");
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileEvents));

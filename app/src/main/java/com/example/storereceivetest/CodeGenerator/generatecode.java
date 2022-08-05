@@ -2,12 +2,27 @@ package com.example.storereceivetest.CodeGenerator;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.print.PrintHelper;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.os.ParcelFileDescriptor;
+import android.print.PageRange;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintDocumentInfo;
+import android.print.PrintManager;
+import android.print.pdf.PrintedPdfDocument;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -19,19 +34,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.dantsu.escposprinter.connection.DeviceConnection;
-import com.dantsu.escposprinter.connection.tcp.TcpConnection;
-import com.dantsu.escposprinter.textparser.PrinterTextParserImg;
-import com.example.storereceivetest.CodeGenerator.async.AsyncEscPosPrint;
-import com.example.storereceivetest.CodeGenerator.async.AsyncEscPosPrinter;
-import com.example.storereceivetest.CodeGenerator.async.AsyncTcpEscPosPrint;
-import com.example.storereceivetest.MainActivity;
+
 import com.example.storereceivetest.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -70,7 +81,18 @@ public class generatecode extends AppCompatActivity {
 
         printbutton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View v) {
+                String itemcode = editText.getText().toString();
+                itemcode.replaceAll("\\s","");
+                if(itemcode.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"The Image cannot be Empty",Toast.LENGTH_LONG).show();
+                }else {
+                    try{
+                        doPrint();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(),"The Image cannot be Empty",Toast.LENGTH_LONG).show();
+                    }
+                }
 
 //                String filename = "Record";
 //                String data = editText.getText().toString();
@@ -113,6 +135,8 @@ public class generatecode extends AppCompatActivity {
         });
     }
 
+
+
     public void QRCodeButton(View view){
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         if(!editText.equals("")){
@@ -153,77 +177,11 @@ public class generatecode extends AppCompatActivity {
         }
     }
 
-    public void printTcp() {
-        final String ipAddress = "192.168.0.200";
-        final String portAddress = "8000";
 
-        try {
-            new AsyncTcpEscPosPrint(
-                    this,
-                    new AsyncEscPosPrint.OnPrintFinished() {
-                        @Override
-                        public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
-                            Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
-                        }
-
-                        @Override
-                        public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
-                            Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
-                        }
-                    }
-            )
-                    .execute(
-                            this.getAsyncEscPosPrinter(
-                                    new TcpConnection(
-                                            ipAddress,
-                                            Integer.parseInt(portAddress)
-                                    )
-                            )
-                    );
-        } catch (NumberFormatException e) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Invalid TCP port address")
-                    .setMessage("Port field must be an integer.")
-                    .show();
-            e.printStackTrace();
+    private void doPrint(){
+            PrintHelper printHelper = new PrintHelper(this);
+            printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
+            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            printHelper.printBitmap("Print Bitmap", bitmap);
         }
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    public AsyncEscPosPrinter getAsyncEscPosPrinter(DeviceConnection printerConnection) {
-        SimpleDateFormat format = new SimpleDateFormat("'on' yyyy-MM-dd 'at' HH:mm:ss");
-        AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
-        return printer.addTextToPrint(
-                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.settings, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
-                        "[L]\n" +
-                        "[C]<u><font size='big'>ORDER N°045</font></u>\n" +
-                        "[L]\n" +
-                        "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
-                        "[C]\n" +
-                        "[C]================================\n" +
-                        "[L]\n" +
-                        "[L]<b>BEAUTIFUL SHIRT</b>[R]9.99€\n" +
-                        "[L]  + Size : S\n" +
-                        "[L]\n" +
-                        "[L]<b>AWESOME HAT</b>[R]24.99€\n" +
-                        "[L]  + Size : 57/58\n" +
-                        "[L]\n" +
-                        "[C]--------------------------------\n" +
-                        "[R]TOTAL PRICE :[R]34.98€\n" +
-                        "[R]TAX :[R]4.23€\n" +
-                        "[L]\n" +
-                        "[C]================================\n" +
-                        "[L]\n" +
-                        "[L]<u><font color='bg-black' size='tall'>Customer :</font></u>\n" +
-                        "[L]Raymond DUPONT\n" +
-                        "[L]5 rue des girafes\n" +
-                        "[L]31547 PERPETES\n" +
-                        "[L]Tel : +33801201456\n" +
-                        "\n" +
-                        "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
-                        "[L]\n" +
-                        imageView +
-                        "[C]<qrcode size='20'>http://www.developpeur-web.dantsu.com/</qrcode>\n"
-        );
-    }
 }

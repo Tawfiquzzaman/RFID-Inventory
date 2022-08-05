@@ -12,17 +12,6 @@
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true">
 
-    <!--
-        In the above cardview widget
-        cardelevation property will give elevation to your card view
-        card corner radius will provide radius to your card view
-        card background color will give background color to your card view
-        card max elevation will give the cardview maximum elevation
-        card prevent corner overlap will add padding to CardView on v20 and
-        before to prevent intersections between the Card content and rounded corners.
-        card use compact padding will add padding in API v21+ as well to have the same
-        measurements with previous versions.
-    -->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +27,7 @@
 <!--            android:padding="5dp"-->
 <!--            />-->
 
-        <!--Text View to display Course Name-->
+
         <TextView
             android:id="@+id/idTVCourseName"
             android:layout_width="match_parent"
@@ -52,8 +41,7 @@
             android:layout_marginLeft="10dp"
             />
 
-        <!--Text VIew to display COurse Rating-->
-        <!--Image used in present in drawable folder-->
+
         <TextView
             android:id="@+id/idTVCourseRating"
             android:layout_width="match_parent"

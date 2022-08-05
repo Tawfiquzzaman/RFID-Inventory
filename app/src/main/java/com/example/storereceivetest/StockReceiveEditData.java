@@ -1,9 +1,11 @@
 package com.example.storereceivetest;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -48,6 +50,7 @@ public class StockReceiveEditData extends AppCompatActivity {
     Spinner spinner;
     Connection con;
     private ImageButton backbutton;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class StockReceiveEditData extends AppCompatActivity {
         edittext= findViewById(R.id.editTextTextPersonName);
         String result =extras.getString("Result");
         TextView inputtext = findViewById(R.id.editTextTextPersonName);
+        builder = new AlertDialog.Builder(this);
         inputtext.setText(result);
 
         backbutton.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +266,7 @@ public class StockReceiveEditData extends AppCompatActivity {
                             String queryUpdateItemBatchBalQty = "UPDATE [dbo].[ItemBatchBalQty] SET [BalQty] = '" + (ItemBatchBalQty+1) + "' WHERE [ItemCode] = '"+ Itemcode +"';";
                             PreparedStatement stmtSUpdateItemBatchBalQty = con.prepareStatement(queryUpdateItemBatchBalQty);
                             stmtSUpdateItemBatchBalQty.executeUpdate();
-
+                            builder.setMessage("Stock Receive Done");
                             addListenerOnButton();
 
                         } else {
@@ -302,23 +306,21 @@ public class StockReceiveEditData extends AppCompatActivity {
 
         final String finalValue = value1;
 
-        //Call OkHttp get Request Function
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                doGetRequest(finalValue);
-//            }
-//        }).start();
-
-        Intent i =new Intent(getApplicationContext(),StockReceive.class);
-        startActivity(i);
+        builder.setTitle("Stock Receive");
+        builder.setMessage("Your data has been recorded");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(StockReceiveEditData.this, "Stock Receive Done", Toast.LENGTH_LONG).show();
+                Intent i =new Intent(getApplicationContext(),StockReceive.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(i);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
-//    //Call Back MainActivity
-//    public void callFirstActivity(View view){
-//        Intent i =new Intent(getApplicationContext(),StockReceive.class);
-//        startActivity(i);
-//    }
 
     //Button Function
     public void onClick(View view){

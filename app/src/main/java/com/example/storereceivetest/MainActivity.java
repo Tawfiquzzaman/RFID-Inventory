@@ -1,25 +1,31 @@
 package com.example.storereceivetest;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.NavigationDrawer.AboutUs;
 import com.example.storereceivetest.CodeGenerator.CodeGenerator;
 import com.example.storereceivetest.itemsetting.itemsetting;
-import com.example.storereceivetest.page3.page3;
+import com.example.NavigationDrawer.SetSerialNo;
 import com.example.storereceivetest.stockreceive.page1;
+import com.google.android.material.navigation.NavigationView;
+
 
 
 public class MainActivity extends AppCompatActivity{
 
-    private CardView btnStockReceive;
+    private DrawerLayout mDrawer;
     private Object CardView;
+    private NavigationView nvDrawer;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +38,16 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_main);
 
+
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawerContent(nvDrawer);
+
         contributeCard: CardView = findViewById(R.id.btnpage1);
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(), page1.class);
+                Intent i = new Intent(getApplicationContext(), page1.class);
                 startActivity(i);
             }
         });
@@ -54,8 +65,8 @@ public class MainActivity extends AppCompatActivity{
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(), page3.class);
-                startActivity(i);
+//                Intent i =new Intent(getApplicationContext(), SetSerialNo.class);
+//                startActivity(i);
             }
         });
 
@@ -67,6 +78,31 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(i);
             }
         });
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        switch(menuItem.getItemId()) {
+            case R.id.nav_first_fragment:
+                Intent i =new Intent(getApplicationContext(), SetSerialNo.class);
+                startActivity(i);
+                break;
+            case R.id.aboutus:
+                Intent i2 =new Intent(getApplicationContext(), AboutUs.class);
+                startActivity(i2);
+                break;
+        }
+        mDrawer.closeDrawers();
     }
 }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Setting">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_first_fragment"
+                    android:icon="@drawable/ic_baseline_settings_applications_24"
+                    android:title="Serial No Setting" />
+
+                <!--        <item-->
+                <!--            android:id="@+id/nav_second_fragment"-->
+                <!--            android:icon="@drawable/ic_baseline_error_24"-->
+                <!--            android:title="Second" />-->
+                <!--        <item-->
+                <!--            android:id="@+id/nav_third_fragment"-->
+                <!--            android:icon="@drawable/ic_baseline_error_24"-->
+                <!--            android:title="Third" />-->
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Information">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/aboutus"
+                    android:icon="@drawable/ic_baseline_error_24"
+                    android:title="About Us" />
+
+            </group>
+        </menu>
+    </item>
+
+
+</menu>
