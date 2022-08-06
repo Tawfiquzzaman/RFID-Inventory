@@ -18,7 +18,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.NavigationDrawer.SetSerialNo;
 import com.example.storereceivetest.Connection.ConnectionClass;
+import com.example.storereceivetest.MainActivity;
 import com.example.storereceivetest.R;
 
 
@@ -97,7 +99,7 @@ public class WithoutRFIDTag extends AppCompatActivity {
                     if (con == null) {
                         Log.e("SQL", "Connection Fail");
                     } else {
-                        Savebutton.setClickable(false);
+
                         String queryitemcode = "SELECT itemcode from [dbo].[item] WHERE itemcode ='" + itemcode.getText().toString() + "';";
                         PreparedStatement stmtitemcode = con.prepareStatement(queryitemcode);
                         ResultSet rsitemcode = stmtitemcode.executeQuery();
@@ -108,8 +110,8 @@ public class WithoutRFIDTag extends AppCompatActivity {
                             Log.e("SQL", Itemcode);
                         }
 
-                        if (Itemcode != null) {
-
+                        if (Itemcode != null && !output.equals("")) {
+                            Savebutton.setClickable(false);
                             int DocKey;
                             int DtlKey;
                             int RegValue1;
@@ -306,7 +308,7 @@ public class WithoutRFIDTag extends AppCompatActivity {
 
                                 builder.setTitle("Stock Receive");
                                 builder.setMessage("Your data has been recorded");
-                                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Toast.makeText(WithoutRFIDTag.this, "Stock Receive Done", Toast.LENGTH_LONG).show();
@@ -317,9 +319,25 @@ public class WithoutRFIDTag extends AppCompatActivity {
                                 alertDialog.show();
 
                             } catch (Exception e) {
-                            }
 
-                        } else {
+                            }
+                        }
+                        else if (!output.equals("")){
+
+                            builder.setTitle("Error");
+                            builder.setMessage("Please set your Serial No in 'Serial No Setting");
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i =new Intent(getApplicationContext(), SetSerialNo.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(i);
+                                }
+                            });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }
+                        else {
                             itemcode.requestFocus();
                             itemcode.setError("Invalid ItemCode");
                         }

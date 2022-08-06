@@ -8,6 +8,16 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
+    <ImageButton
+        android:id="@+id/profileB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="30dp"
+        android:src="@drawable/_7"
+         />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

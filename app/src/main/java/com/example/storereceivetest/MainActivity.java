@@ -1,12 +1,15 @@
 package com.example.storereceivetest;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     private Object CardView;
     private NavigationView nvDrawer;
     private Toolbar toolbar;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+        builder = new AlertDialog.Builder(this);
 
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,8 +70,10 @@ public class MainActivity extends AppCompatActivity{
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i =new Intent(getApplicationContext(), SetSerialNo.class);
-//                startActivity(i);
+                builder.setTitle("Coming Soon");
+                builder.setMessage("The Stock Issue still under development.");
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
@@ -100,6 +107,12 @@ public class MainActivity extends AppCompatActivity{
             case R.id.aboutus:
                 Intent i2 =new Intent(getApplicationContext(), AboutUs.class);
                 startActivity(i2);
+                break;
+
+            case R.id.moreinformation:
+                String url = "https://www.prisma-tech4u.com/pages/about";
+                Intent i3 =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(i3);
                 break;
         }
         mDrawer.closeDrawers();

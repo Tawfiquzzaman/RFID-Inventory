@@ -11,7 +11,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
@@ -23,6 +25,9 @@ import android.print.PrintDocumentAdapter;
 import android.print.PrintDocumentInfo;
 import android.print.PrintManager;
 import android.print.pdf.PrintedPdfDocument;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -48,10 +53,14 @@ import java.util.Date;
 
 public class generatecode extends AppCompatActivity {
 
-    private EditText editText;
+    private EditText editText,editText1;
     private ImageView imageView;
     private Button printbutton;
     private ImageButton backbutton;
+    private Bitmap codebitmap = null;
+    private Bitmap finalbitmap = null;
+    private Bitmap textbitmap = null;
+    private Bitmap textbitmap1 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +74,7 @@ public class generatecode extends AppCompatActivity {
 
         setContentView(R.layout.activity_generatecode);
         editText = findViewById(R.id.editText);
+        editText1 = findViewById(R.id.editText1);
         imageView = findViewById(R.id.imageView);
         printbutton = findViewById(R.id.printbutton);
 
@@ -141,14 +151,24 @@ public class generatecode extends AppCompatActivity {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         if(!editText.equals("")){
         try {
-            BitMatrix bitMatrix = qrCodeWriter.encode(editText.getText().toString(), BarcodeFormat.QR_CODE, 300, 300);
-            Bitmap bitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.RGB_565);
-            for (int x = 0; x<300; x++){
-                for (int y=0; y<300; y++){
+            BitMatrix bitMatrix = qrCodeWriter.encode(editText.getText().toString(), BarcodeFormat.QR_CODE, 400, 150);
+            Bitmap bitmap = Bitmap.createBitmap(400, 150, Bitmap.Config.RGB_565);
+            for (int x = 0; x<400; x++){
+                for (int y=0; y<150; y++){
                     bitmap.setPixel(x,y,bitMatrix.get(x,y)? Color.BLACK : Color.WHITE);
                 }
             }
-            imageView.setImageBitmap(bitmap);
+            textbitmap = textAsBitmap( " ItemCode:   " + editText.getText().toString(), 30);
+            textbitmap1 = twoBtmap2One1(bitmap,textbitmap);
+            finalbitmap = zoomImg(textbitmap1, 400 ,300);
+
+
+            textbitmap = textAsBitmap(editText1.getText().toString(), 20);
+            finalbitmap = twoBtmap2One1(finalbitmap,textbitmap);
+            zoomImg(finalbitmap, 400 ,300);
+            
+            imageView.setImageBitmap(finalbitmap);
+            codebitmap = bitmap;
             } catch (Exception e) {
             e.printStackTrace();
             }
@@ -161,14 +181,24 @@ public class generatecode extends AppCompatActivity {
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         if(!editText.equals("")){
             try {
-                BitMatrix bitMatrix = multiFormatWriter.encode(editText.getText().toString(), BarcodeFormat.CODE_128, imageView.getWidth(), imageView.getHeight());
-                Bitmap bitmap = Bitmap.createBitmap(imageView.getWidth(), imageView.getHeight(), Bitmap.Config.RGB_565);
-                for (int i = 0; i<imageView.getWidth(); i++){
-                    for (int j = 0; j<imageView.getHeight(); j++){
+                BitMatrix bitMatrix = multiFormatWriter.encode(editText.getText().toString(), BarcodeFormat.CODE_128, 200,200);
+                Bitmap bitmap = Bitmap.createBitmap(200,200, Bitmap.Config.RGB_565);
+                for (int i = 0; i<200; i++){
+                    for (int j = 0; j<200; j++){
                         bitmap.setPixel(i,j,bitMatrix.get(i,j)? Color.BLACK:Color.WHITE);
                 }
             }
-                imageView.setImageBitmap(bitmap);
+                textbitmap = textAsBitmap("     " + editText.getText().toString(), 30);
+                textbitmap1 = zoomImg(textbitmap, 200 ,50);
+                zoomImg(bitmap, 200 ,200);
+                finalbitmap = twoBtmap2One1bar(bitmap,textbitmap1);
+
+                textbitmap = textAsBitmap(editText1.getText().toString(), 20);
+                textbitmap1 = zoomImg(textbitmap, 200 ,50);
+                finalbitmap = twoBtmap2One1(finalbitmap,textbitmap1);
+
+                imageView.setImageBitmap(finalbitmap);
+                codebitmap = bitmap;
             } catch (Exception e) {
                 e.printStackTrace();
         }
@@ -177,6 +207,63 @@ public class generatecode extends AppCompatActivity {
         }
     }
 
+
+    public Bitmap twoBtmap2One1bar(Bitmap bitmap1, Bitmap bitmap2) {
+        Bitmap bitmap3 = Bitmap.createBitmap(bitmap1.getWidth(),
+                bitmap1.getHeight()+bitmap2.getHeight(), bitmap1.getConfig());
+        Canvas canvas = new Canvas(bitmap3);
+        canvas.drawBitmap(bitmap1, new Matrix(), null);
+        canvas.drawBitmap(bitmap2,0, bitmap1.getHeight(), null);
+        return bitmap3;
+    }
+
+
+    public static Bitmap textAsBitmap(String text, float textSize) {
+
+        TextPaint textPaint = new TextPaint();
+
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        textPaint.setTextSize(textSize);
+
+
+        StaticLayout layout = new StaticLayout(text, textPaint, 400,
+                Layout.Alignment.ALIGN_NORMAL, 1.3f, 0.0f, true);
+        Bitmap bitmap = Bitmap.createBitmap(layout.getWidth() ,
+                layout.getHeight()+50 , Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.translate(10, 10);
+        canvas.drawColor(Color.WHITE);
+
+        layout.draw(canvas);
+        return bitmap;
+    }
+
+    public Bitmap twoBtmap2One1(Bitmap bitmap1, Bitmap bitmap2) {
+        Bitmap bitmap3 = Bitmap.createBitmap(bitmap2.getWidth(),
+                bitmap2.getHeight()+bitmap1.getHeight(), bitmap2.getConfig());
+        Canvas canvas = new Canvas(bitmap3);
+        canvas.drawBitmap(bitmap2, new Matrix(), null);
+        canvas.drawBitmap(bitmap1,0, bitmap2.getHeight(), null);
+        return bitmap3;
+    }
+
+    // 缩放图片
+    public static Bitmap zoomImg(Bitmap bm, int newWidth, int newHeight) {
+        // 获得图片的宽高
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        // 计算缩放比例
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // 取得想要缩放的matrix参数
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        // 得到新的图片
+        Bitmap newbm = Bitmap.createBitmap(bm, 0, 0, width, height, matrix,
+                true);
+        return newbm;
+    }
 
     private void doPrint(){
             PrintHelper printHelper = new PrintHelper(this);

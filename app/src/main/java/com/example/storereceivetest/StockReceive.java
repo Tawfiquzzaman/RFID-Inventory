@@ -235,11 +235,11 @@ public class StockReceive extends AppCompatActivity implements View.OnClickListe
         if (!started) {
             started = true;
             handler.postDelayed(runnable,0);
-            start.setText("停止读卡");
+            start.setText("Stop");
         } else {
             started = false;
             handler.removeCallbacks(runnable);
-            start.setText("开始读卡");
+            start.setText("Start");
         }
     }
 
@@ -348,7 +348,7 @@ public class StockReceive extends AppCompatActivity implements View.OnClickListe
         }
         if (started) {
             handler.removeCallbacks(runnable);
-            start.setText("开始读卡");
+            start.setText("Start");
             started = false;
         }
         try {

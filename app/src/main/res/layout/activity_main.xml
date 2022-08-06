@@ -2,6 +2,7 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,9 +14,6 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity"
@@ -113,7 +111,7 @@
                         android:layout_marginRight="16dp"
                         android:background="?attr/selectableItemBackground"
                         android:padding="8dp"
-                        android:src="@drawable/profile"
+                        android:src="@drawable/_7"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -157,7 +155,7 @@
                             android:id="@+id/image_view1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/write"
+                            android:src="@drawable/_5"
                             app:layout_constraintBottom_toTopOf="@+id/textView1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -206,7 +204,7 @@
                             android:id="@+id/image_view20"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/practice"
+                            android:src="@drawable/_4"
                             app:layout_constraintBottom_toTopOf="@+id/textView20"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -268,7 +266,7 @@
                             android:id="@+id/image_view21"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/learn"
+                            android:src="@drawable/_3"
                             app:layout_constraintBottom_toTopOf="@+id/textView21"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -317,7 +315,7 @@
                             android:id="@+id/image_view22"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/interests"
+                            android:src="@drawable/_0"
                             app:layout_constraintBottom_toTopOf="@+id/textView22"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"

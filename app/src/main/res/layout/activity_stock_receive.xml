@@ -81,22 +81,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="灵敏度:"/>
+            android:text="灵敏度:"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/text_power"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3" />
+            android:text="3"
+            android:visibility="invisible" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
-            android:text="读卡总数:"/>
+            android:text="Count:"/>
         <TextView
             android:id="@+id/text_count"
             android:layout_width="wrap_content"
@@ -114,13 +117,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="编号"/>
+            android:text="No"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="ID/名称"/>
+            android:text="ID"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -170,7 +173,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="开始读卡"
+            android:text="Scan"
             android:textSize="25dp" />
 
         <CheckBox
@@ -179,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginBottom="5dp"
-            android:text="音量"
+            android:text="Sound"
             android:textSize="15dp" />
     </LinearLayout>
 

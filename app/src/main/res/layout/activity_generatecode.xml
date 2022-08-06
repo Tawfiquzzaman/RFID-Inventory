@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CodeGenerator.generatecode">
 
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -49,8 +50,7 @@
         android:layout_marginEnd="50dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="Enter_ItemCode_here"
-
+        android:hint="Enter ItemCode here"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +95,23 @@
         app:layout_constraintEnd_toEndOf="@+id/qrbutton"
         app:layout_constraintStart_toStartOf="@+id/barbutton"
         app:layout_constraintTop_toBottomOf="@+id/barbutton" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="315dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Enter_ItemCode_here"
+        android:inputType="textPersonName"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/printbutton"
+        app:layout_constraintTop_toBottomOf="@+id/printbutton"
+        tools:visibility="invisible" />
 
     <View
         android:id="@+id/viewBotton"
