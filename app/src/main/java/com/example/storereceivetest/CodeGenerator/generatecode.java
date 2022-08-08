@@ -40,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.example.storereceivetest.MainActivity;
 import com.example.storereceivetest.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -83,7 +84,7 @@ public class generatecode extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(), CodeGenerator.class);
+                Intent i =new Intent(getApplicationContext(), MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
             }

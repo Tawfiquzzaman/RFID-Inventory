@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.NavigationDrawer.AboutUs;
 import com.example.storereceivetest.CodeGenerator.CodeGenerator;
+import com.example.storereceivetest.CodeGenerator.generatecode;
 import com.example.storereceivetest.itemsetting.itemsetting;
 import com.example.NavigationDrawer.SetSerialNo;
 import com.example.storereceivetest.stockreceive.page1;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity{
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(), CodeGenerator.class);
+                Intent i =new Intent(getApplicationContext(), generatecode.class);
                 startActivity(i);
             }
         });
