@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.storereceivetest">
+    package="com.example.StockInventory">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -16,17 +16,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StoreReceiveTest">
-        <activity android:name="com.example.NavigationDrawer.AboutUs"></activity>
-        <activity android:name=".itemsetting.itemsetting" />
-        <activity android:name=".stockreceive.withoutrfidScanner" />
+        <activity android:name=".StockAdjustment.Scanner"></activity>
+        <activity android:name=".StockAdjustment.page5" />
+        <activity android:name=".StockAdjustment.withoutrfid.AdjWithoutRFID" />
+        <activity android:name=".StockIssue.WithoutRFID.SICodeScanner" />
+        <activity android:name=".StockIssue.WithoutRFID.stockissuewithoutrfid" />
+        <activity android:name=".StockIssue.page3" />
+        <activity android:name=".StockIssue.WithRFID.StockIssueEditData" />
+        <activity android:name=".StockIssue.WithRFID.stockissue" />
+        <activity android:name="com.example.NavigationDrawer.AboutUs" />
+        <activity android:name=".ListItemCode.itemsetting" />
+        <activity android:name=".StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.withoutrfidScanner" />
         <activity android:name="com.example.NavigationDrawer.SetSerialNo" />
-        <activity android:name=".stockreceive.WithoutRFIDTag" />
-        <activity android:name=".stockreceive.page1" />
+        <activity android:name=".StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.WithoutRFIDTag" />
+        <activity android:name=".StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.page1" />
         <activity android:name=".CodeGenerator.generatecode" />
-        <activity android:name=".CodeGenerator.CodeGenerator" />
-        <activity android:name=".Scanner" />
-        <activity android:name=".StockReceiveEditData" />
-        <activity android:name=".StockReceive" />
+        <activity android:name=".StockReceive.StockReceiveWithRFID.Scanner" />
+        <activity android:name=".StockReceive.StockReceiveWithRFID.StockReceiveEditData" />
+        <activity android:name=".StockReceive.StockReceiveWithRFID.StockReceive" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/_2501"
-    tools:context=".StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.page1">
+    tools:context=".StockAdjustment.page5">
 
     <View
         android:id="@+id/view"
@@ -37,7 +36,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
-        android:text="Stock Receive"
+        android:text="Stock Adjustment"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"

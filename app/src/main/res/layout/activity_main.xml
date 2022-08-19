@@ -31,6 +31,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
+            <View
+                android:id="@+id/viewBotton"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="540dp"
+                android:background="@drawable/wave__2_"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 <!--            <ImageButton-->
 <!--                android:id="@+id/expanded_menubutton"-->
@@ -350,7 +360,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -370,6 +380,7 @@
                     app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnpage5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -389,7 +400,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="HELP"
+                            android:text="Stock Adjustment"
                             android:textAllCaps="true"
                             android:textColor="@color/green_500"
                             android:textSize="14sp"
@@ -415,11 +426,13 @@
                     android:elevation="12dp"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
+                    android:visibility="invisible"
                     app:cardCornerRadius="8dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:visibility="visible">
 
                         <ImageView
                             android:id="@+id/image_view"
@@ -454,19 +467,10 @@
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/viewBotton"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="540dp"
-                android:background="@drawable/wave__2_"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

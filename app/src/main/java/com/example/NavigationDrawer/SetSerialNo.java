@@ -15,8 +15,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.storereceivetest.MainActivity;
-import com.example.storereceivetest.R;
+import com.example.StockInventory.MainActivity;
+import com.example.StockInventory.R;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,7 +40,7 @@ public class SetSerialNo extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_page3);
+        setContentView(R.layout.activity_setserialno);
 
         final TextView output = findViewById(R.id.SerialNo);
         final EditText enterText = findViewById(R.id.newserialno);

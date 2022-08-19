@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StockReceive.StockReceiveWithRFID.StockReceiveEditData">
-
+    tools:context="com.example.NavigationDrawer.SetSerialNo">
 
     <View
         android:id="@+id/view"
@@ -27,7 +26,7 @@
         />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -35,7 +34,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
-        android:text="With RFID Tag"
+        android:text="PRISMA"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -56,34 +55,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/btnwithrfidtag"
+            android:id ="@+id/btnwithrfidtag"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView6"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:text="ID"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="24sp"-->
-<!--                android:textStyle="bold"-->
-<!--                tools:layout_editor_absoluteX="62dp"-->
-<!--                tools:layout_editor_absoluteY="28dp" />-->
-
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:text="ID: "
+                android:text="Current Serial No: "
                 android:textAllCaps="true"
                 android:textColor="@color/green_500"
                 android:textSize="20sp"
@@ -94,9 +81,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                android:id = "@+id/textView4"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                android:id = "@+id/SerialNo"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
@@ -104,49 +91,36 @@
                 android:layout_marginEnd="20dp">
             </TextView>
 
+
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Mold Code  :"
+                android:text="New Serial No :"
                 android:textAllCaps="true"
                 android:textColor="@color/green_500"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="@+id/SerialNo"
+                app:layout_constraintTop_toBottomOf="@+id/SerialNo"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
 
             <EditText
+                android:id="@+id/newserialno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:id = "@+id/editTextTextPersonName"
+                android:hint="SRSN-000001"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black">
-            </EditText>
-
-            <Button
-                android:id="@+id/buttonqrcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/green_500"
-                android:onClick="onClick"
-                android:text="QR Code"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.939"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"></EditText>
 
             <Button
                 android:id="@+id/Save"
@@ -156,20 +130,10 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@color/green_500"
-                android:text="Confirm"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                android:text="Change Serial No"
+                app:layout_constraintEnd_toEndOf="@+id/newserialno"
+                app:layout_constraintTop_toBottomOf="@+id/newserialno" />
 
-            <!--    <Spinner-->
-            <!--        android:id="@+id/spinner"-->
-            <!--        android:layout_width="177dp"-->
-            <!--        android:layout_height="42dp"-->
-            <!--        android:layout_marginBottom="365dp"-->
-            <!--        android:visibility="invisible"-->
-            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--        app:layout_constraintStart_toStartOf="parent"-->
-            <!--        app:layout_constraintTop_toBottomOf="@+id/textView6" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -187,4 +151,3 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
