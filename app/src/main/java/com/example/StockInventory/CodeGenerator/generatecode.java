@@ -250,5 +250,5 @@ public class generatecode extends AppCompatActivity {
             printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
             printHelper.printBitmap("Print Bitmap", bitmap);
-        }
+    }
 }

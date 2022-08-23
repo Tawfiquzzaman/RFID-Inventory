@@ -1,4 +1,4 @@
-package com.example.StockInventory.StockReceive.StockReceiveWithRFID;
+package com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.StockInventory.R;
+import com.example.StockInventory.BeanId;
+import com.example.StockInventory.Util;
 
 import java.io.BufferedWriter;
 import java.io.File;

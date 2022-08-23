@@ -17,22 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockAdjustment.page5;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.WithoutRFIDTag;
 import com.example.Util.Connection.FileHelper;
 import com.example.Util.Connection.InventoryHelper.InventoryHelper;
 import com.example.Util.Connection.InventoryHelper.InventorySaveData;
+import com.example.Util.Connection.Scanner.Scanner;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 
 
 public class AdjWithoutRFID extends AppCompatActivity {
 
-    protected final String DocType = "SA";
-
+    protected final String DocType = "SA2";
     private ImageButton backbutton;
 
     @Override
@@ -53,10 +50,8 @@ public class AdjWithoutRFID extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("ID");
-            final String[] items = value.split("/");
-            output.setText(items[0]);
-            itemcode.setText(items[1]);
+            String value = extras.getString("Itemcode");
+            itemcode.setText(value);
         }
 
 
@@ -69,6 +64,20 @@ public class AdjWithoutRFID extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        Button buttonqrcode = findViewById(R.id.adjbuttonqrcode);
+        buttonqrcode.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Scanner.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                i.putExtra("DocType", DocType);
+                i.putExtra("ID",output.getText().toString());
+                startActivity(i);
+            }
+        });
+
 
         Button Savebutton = findViewById(R.id.Save);
         Savebutton.setOnClickListener(new View.OnClickListener() {

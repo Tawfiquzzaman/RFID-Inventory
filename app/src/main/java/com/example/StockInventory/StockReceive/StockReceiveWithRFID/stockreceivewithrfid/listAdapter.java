@@ -1,4 +1,4 @@
-package com.example.StockInventory.StockReceive.StockReceiveWithRFID;
+package com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.StockInventory.R;
+import com.example.StockInventory.BeanId;
+import com.example.StockInventory.StockIssue.WithRFID.StockIssueEditData;
 
 import java.io.IOException;
 import java.util.List;
@@ -77,39 +79,21 @@ public class listAdapter extends BaseAdapter implements View.OnClickListener {
                         inputServer.setFocusable(true);
                         inputServer.setText("");
 
-                        Intent i = new Intent(context.getApplicationContext(), StockReceiveEditData.class);
-                        i.putExtra("Value1",data);
-                        context.startActivity(i);
-//                        //设置弹窗属性
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//                        builder.setTitle(data)
-//                                .setIcon(R.drawable.ic_launcher_background)
-//                                .setView(inputServer)
-//                                .setNegativeButton("取消",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                return;
-//                                            }
-//                                        });
-//                                builder.setPositiveButton("确定",
-//                                new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        //设置ID名称
-//                                        String txdata = inputServer.getText().toString();
-//                                        String value = data;
-//                                        if (!txdata.equals("")) {
-//                                            value = data.split("/")[0] + "/" + txdata;
-////                                            Log.e("TAG", "setData: a" + txdata + "b" );
-//                                        } else {
-//                                            value = data.split("/")[0];
-//                                        }
-//                                        setData(data,value);
-//                                    }
-//                                });
-//                        builder.show();
+                        if (data.contains("/") == true) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("Stock Receive Error");
+                            builder.setMessage("The RFID Tag already registed with a itemcode");
+                            builder.show();
+
+                        } else {
+                            Intent i = new Intent(context.getApplicationContext(), StockReceiveEditData.class);
+                            i.putExtra("Value1",data);
+                            context.startActivity(i);
+
+                        }
                     }
                 });
+
                 holder.tVSend.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

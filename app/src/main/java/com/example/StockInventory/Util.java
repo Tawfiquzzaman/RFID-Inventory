@@ -1,10 +1,8 @@
-package com.example.StockInventory.StockReceive.StockReceiveWithRFID;
+package com.example.StockInventory;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
-
-import com.example.StockInventory.R;
 
 import java.util.HashMap;
 import java.util.Map;

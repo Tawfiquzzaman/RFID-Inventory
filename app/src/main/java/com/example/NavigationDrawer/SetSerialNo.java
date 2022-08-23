@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.R;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceive;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -95,12 +96,17 @@ public class SetSerialNo extends AppCompatActivity {
                                                         writer.close();
                                                         output.setText(readFile());
                                                         Toast.makeText(SetSerialNo.this, "Saved your Changed", Toast.LENGTH_LONG).show();
-                                                        finish();
+
+                                                        Intent i =new Intent(getApplicationContext(), MainActivity.class);
+                                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                        startActivity(i);
                                                     } catch (Exception e) {
                                                     }
                                                 }else{
                                                     Toast.makeText(SetSerialNo.this, "Wrong password", Toast.LENGTH_LONG).show();
-                                                    finish();
+                                                    Intent i =new Intent(getApplicationContext(), MainActivity.class);
+                                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                    startActivity(i);
                                                 }
                                             }
                                         });

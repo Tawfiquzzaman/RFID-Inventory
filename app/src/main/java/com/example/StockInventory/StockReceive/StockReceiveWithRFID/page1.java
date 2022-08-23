@@ -1,4 +1,4 @@
-package com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid;
+package com.example.StockInventory.StockReceive.StockReceiveWithRFID;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,8 @@ import android.widget.ImageButton;
 
 import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.R;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.StockReceive;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.WithoutRFIDTag;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceive;
 
 public class page1 extends AppCompatActivity {
 
@@ -54,6 +55,7 @@ public class page1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(getApplicationContext(), WithoutRFIDTag.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(i);
             }
         });

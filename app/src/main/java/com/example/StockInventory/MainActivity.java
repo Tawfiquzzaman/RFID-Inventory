@@ -17,10 +17,10 @@ import com.example.NavigationDrawer.AboutUs;
 import com.example.StockInventory.CodeGenerator.generatecode;
 import com.example.StockInventory.ListItemCode.itemsetting;
 import com.example.NavigationDrawer.SetSerialNo;
+import com.example.StockInventory.StockAdjustment.page5;
 import com.example.StockInventory.StockAdjustment.withoutrfid.AdjWithoutRFID;
-import com.example.StockInventory.StockIssue.WithRFID.stockissue;
 import com.example.StockInventory.StockIssue.page3;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.page1;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.page1;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity{
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i =new Intent(getApplicationContext(), page3.class);
-//                startActivity(i);
+                Intent i =new Intent(getApplicationContext(), page3.class);
+                startActivity(i);
 
-                builder.setTitle("Coming Soon");
-                builder.setMessage("The Stock Issue still under development.");
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+//                builder.setTitle("Coming Soon");
+//                builder.setMessage("The Stock Issue still under development.");
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
             }
         });
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity{
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(), AdjWithoutRFID.class);
+                Intent i =new Intent(getApplicationContext(), page5.class);
                 startActivity(i);
             }
         });

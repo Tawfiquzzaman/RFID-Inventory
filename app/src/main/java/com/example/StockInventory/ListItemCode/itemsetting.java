@@ -12,7 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
-import com.example.Util.Connection.ConnectionClass;
+import com.example.Util.Connection.Connection.ConnectionClass;
 import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.R;
 

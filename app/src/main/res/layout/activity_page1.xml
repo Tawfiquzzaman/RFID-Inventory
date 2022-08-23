@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/_2501"
-    tools:context=".StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.page1">
+    tools:context=".StockReceive.StockReceiveWithRFID.page1">
 
     <View
         android:id="@+id/view"

@@ -2,7 +2,7 @@ package com.example.StockInventory.StockIssue;
 
 import android.view.View;
 
-import com.example.Util.Connection.ConnectionClass;
+import com.example.Util.Connection.Connection.ConnectionClass;
 
 import java.sql.Connection;
 import java.sql.SQLException;

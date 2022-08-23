@@ -1,27 +1,28 @@
-package com.example.StockInventory.StockAdjustment;
+package com.example.StockInventory.StockReceive.StockReceiveWithRFID;
 
+import com.example.StockInventory.StockAdjustment.StockAdjSQL;
 import com.example.Util.Connection.InventoryHelper.InventoryHelper;
 import com.example.Util.Connection.InventoryHelper.InventorySQLcmd;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class StockAdjSaveData extends InventoryHelper {
+public class StockReceiveSaveData extends InventoryHelper {
 
-    public static void ADJSave(Connection con, String[] ArrOfString, int[] ArrOfInt) {
+    public static void RCVSave(Connection con, String[] ArrOfString, int[] ArrOfInt) {
 
         try {
 
-            StockAdjSQL.executeInsertADJ(con, ArrOfString, ArrOfInt);
-            StockAdjSQL.executeInsertADJDTL(con, ArrOfString, ArrOfInt);
-            StockAdjSQL.executeInsertStockDTL(con, ArrOfString, ArrOfInt);
+            StockReceiveSQL.executeInsertRCV(con, ArrOfString, ArrOfInt);
+            StockReceiveSQL.executeInsertRCVDTL(con, ArrOfString, ArrOfInt);
+            StockReceiveSQL.executeInsertStockDTL(con, ArrOfString, ArrOfInt);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public static void ADJSaveItemQty(Connection con , String[] ArrayItemCode) throws SQLException {
+    public static void RCVSaveItemQty(Connection con , String[] ArrayItemCode) throws SQLException {
 
         //UpdateItemUOM
         UpdateQuery(con, InventorySQLcmd.getUpdateItemUOM(), ArrayItemCode[0]);
@@ -35,7 +36,6 @@ public class StockAdjSaveData extends InventoryHelper {
 
         //Update ItemBatchBalQty
         if (executeQuery(con, InventorySQLcmd.getSelectItemBatchBalQty(),  ArrayItemCode[0]) == null) {
-
             insertItemBalQtyQuery(con, InventorySQLcmd.getInsertItemBatchBalQty(), ArrayItemCode);
         } else {
             UpdateQuery(con, InventorySQLcmd.getUpdateItemBatchBalQty(),  ArrayItemCode[0]);

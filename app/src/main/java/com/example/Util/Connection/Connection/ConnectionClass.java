@@ -1,4 +1,4 @@
-package com.example.Util.Connection;
+package com.example.Util.Connection.Connection;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;

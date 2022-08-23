@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 
 import com.example.StockInventory.R;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.BeanId;
+import com.example.StockInventory.BeanId;
 
 /**
  * Created by lbx on 2017/3/13.

@@ -16,18 +16,13 @@ import android.widget.Toast;
 
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockIssue.SIsavedata;
-import com.example.StockInventory.StockIssue.StockIssueSQLcmd;
-import com.example.StockInventory.StockIssue.WithRFID.StockIssueEditData;
 import com.example.StockInventory.StockIssue.page3;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.withoutrfidScanner;
-import com.example.Util.Connection.ConnectionClass;
-
-import java.sql.Connection;
-import java.sql.SQLException;
+import com.example.Util.Connection.Scanner.Scanner;
 
 public class stockissuewithoutrfid extends AppCompatActivity {
 
     private ImageButton backbutton;
+    protected final String DocType = "SI";
 
 
     @Override
@@ -68,8 +63,9 @@ public class stockissuewithoutrfid extends AppCompatActivity {
         qrscanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SICodeScanner.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                Intent i = new Intent(getApplicationContext(), Scanner.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                i.putExtra("DocType", DocType);
                 startActivity(i);
             }
         });

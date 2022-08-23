@@ -1,6 +1,6 @@
 package com.example.Util.Connection.InventoryHelper;
 
-import com.example.Util.Connection.ConnectionClass;
+import com.example.Util.Connection.Connection.ConnectionClass;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

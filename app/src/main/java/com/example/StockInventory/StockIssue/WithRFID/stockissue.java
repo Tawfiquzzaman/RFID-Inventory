@@ -20,8 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.StockInventory.R;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.BeanId;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.Util;
+import com.example.StockInventory.BeanId;
+import com.example.StockInventory.Util;
 
 import java.io.BufferedWriter;
 import java.io.File;

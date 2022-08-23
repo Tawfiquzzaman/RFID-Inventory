@@ -13,8 +13,6 @@ import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockIssue.WithRFID.stockissue;
 import com.example.StockInventory.StockIssue.WithoutRFID.stockissuewithoutrfid;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.StockReceive;
-import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithoutrfid.WithoutRFIDTag;
 
 public class page3 extends AppCompatActivity {
 

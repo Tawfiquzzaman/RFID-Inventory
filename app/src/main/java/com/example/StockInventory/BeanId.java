@@ -1,4 +1,4 @@
-package com.example.StockInventory.StockReceive.StockReceiveWithRFID;
+package com.example.StockInventory;
 
 /**
  * Created by and on 2017-06-01.

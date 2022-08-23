@@ -1,4 +1,4 @@
-package com.example.Util.Connection;
+package com.example.Util.Connection.Connection;
 
 public class DatabaseName {
     public static String database_name = "AED_aw";

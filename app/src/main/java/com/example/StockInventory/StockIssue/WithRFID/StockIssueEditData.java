@@ -19,8 +19,7 @@ import android.widget.Toast;
 
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockIssue.SIsavedata;
-import com.example.StockInventory.StockIssue.StockIssueSQLcmd;
-import com.example.Util.Connection.ConnectionClass;
+import com.example.Util.Connection.Scanner.Scanner;
 
 import java.sql.Connection;
 
@@ -61,6 +60,7 @@ public class StockIssueEditData<countDigit> extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
         Button savebuttonStockIssue = findViewById(R.id.SaveStockIssue);
         savebuttonStockIssue.setOnClickListener(new View.OnClickListener() {

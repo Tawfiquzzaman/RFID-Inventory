@@ -5,7 +5,10 @@ import android.view.View;
 import com.example.StockInventory.StockAdjustment.StockAdjSQL;
 import com.example.StockInventory.StockAdjustment.StockAdjSQLcmd;
 import com.example.StockInventory.StockAdjustment.StockAdjSaveData;
-import com.example.Util.Connection.ConnectionClass;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.StockReceiveSQL;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.StockReceiveSQLcmd;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.StockReceiveSaveData;
+import com.example.Util.Connection.Connection.ConnectionClass;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -36,13 +39,15 @@ public class InventorySaveData extends InventoryHelper{
                 int[] ArrOfInt = {DocKey, DtlKey};
                 String[] ArrOfString = {id, itemcode, ArrayItemCode[1], StockDTLKey, DocNo};
 
-                if(Doctype.matches("SA")){
+                if(Doctype.matches("SA1") || Doctype.matches("SA2")){
 
                     StockAdjSaveData.ADJSave(con, ArrOfString, ArrOfInt);
                     StockAdjSaveData.ADJSaveItemQty(con, ArrayItemCode);
 
-                }else if(Doctype.matches("SR")){
+                }else if(Doctype.matches("SR1") || Doctype.matches("SR2")){
 
+                    StockReceiveSaveData.RCVSave(con, ArrOfString, ArrOfInt);
+                    StockReceiveSaveData.RCVSaveItemQty(con, ArrayItemCode);
 
                 }else if(Doctype.matches("SI")){
 
@@ -55,12 +60,14 @@ public class InventorySaveData extends InventoryHelper{
     }
 
     public static String CheckDocType(Connection con, String DocType) throws SQLException {
-        if(DocType.matches("SA")){
+        if(DocType.matches("SA1") || DocType.matches("SA2")){
             String DocNo = StockAdjSQL.executeLoadDocNo(con);
             UpdateQuery(con, StockAdjSQLcmd.getUpdateDocNo());
             return DocNo;
-        }else if(DocType.matches("SR")){
-
+        }else if(DocType.matches("SR1")||DocType.matches("SR2")){
+            String DocNo = StockReceiveSQL.executeLoadDocNo(con);
+            UpdateQuery(con, StockReceiveSQLcmd.getUpdateDocNo());
+            return DocNo;
         }else if (DocType.matches("SI")){
 
         }else{
@@ -68,5 +75,7 @@ public class InventorySaveData extends InventoryHelper{
         }
         return null;
     }
+
+
 
 }
