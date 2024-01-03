@@ -31,12 +31,12 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="46dp"
         android:contentDescription="todo"
         android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionBarDivider" />
@@ -61,16 +61,16 @@
         android:layout_width="132dp"
         android:layout_height="59dp"
         android:layout_marginStart="46dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="23dp"
-        android:layout_marginBottom="222dp"
         android:onClick="barCodeButton"
         android:text="Bar Code"
         app:backgroundTint="@color/green_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/qrbutton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.726" />
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.012" />
 
     <Button
         android:id="@+id/qrbutton"
@@ -88,13 +88,14 @@
         android:id="@+id/printbutton"
         android:layout_width="309dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="147dp"
         android:text="Print"
         app:backgroundTint="@color/green_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/qrbutton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/barbutton"
-        app:layout_constraintTop_toBottomOf="@+id/barbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/barbutton"
+        app:layout_constraintVertical_bias="0.055" />
 
     <EditText
         android:id="@+id/editText1"
@@ -117,11 +118,22 @@
         android:id="@+id/viewBotton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="540dp"
         android:background="@drawable/wave__2_"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/printcodebutton"
+        android:layout_width="309dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="48dp"
+
+        android:text="Print With Integrated Printer"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBotton"
+        app:layout_constraintEnd_toEndOf="@+id/viewBotton"
+        app:layout_constraintTop_toTopOf="@+id/viewBotton"
+        app:layout_constraintVertical_bias="0.07" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

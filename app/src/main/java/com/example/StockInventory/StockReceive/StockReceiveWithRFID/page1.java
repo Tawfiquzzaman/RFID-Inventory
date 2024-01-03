@@ -59,5 +59,7 @@ public class page1 extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
     }
 }

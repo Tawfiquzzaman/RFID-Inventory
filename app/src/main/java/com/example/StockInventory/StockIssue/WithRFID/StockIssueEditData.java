@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockIssue.SIsavedata;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceive;
+import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceiveEditData;
 import com.example.Util.Connection.Scanner.Scanner;
 
 import java.sql.Connection;
@@ -75,6 +80,7 @@ public class StockIssueEditData<countDigit> extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SIsavedata.savedata(id.getText().toString(), itemcode.getText().toString(), v);
+                        addListenerOnButton();
                         Toast.makeText(StockIssueEditData.this, "Data be recorded", Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -89,5 +95,29 @@ public class StockIssueEditData<countDigit> extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+    }
+
+
+    public void addListenerOnButton() {
+        final TextView id = findViewById(R.id.textView4);
+        final TextView itemcode = findViewById(R.id.itemcode);
+
+        String value1= id.getText().toString();
+        String value2 = itemcode.getText().toString();
+        final String data = value1;
+
+        value1 = data.split("/")[0];
+
+        setData(data,value1);
+    }
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private void setData(String data,String data1) {
+        data = data.split("/")[0];
+        sharedPreferences = getSharedPreferences(data, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString(data,data1);
+        editor.commit();
     }
 }

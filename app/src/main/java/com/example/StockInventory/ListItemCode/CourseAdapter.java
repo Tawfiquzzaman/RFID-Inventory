@@ -35,6 +35,25 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
         CourseModel model = courseModelArrayList.get(position);
         holder.courseNameTV.setText(model.getCourse_name());
         holder.courseRatingTV.setText("UOM: " + model.getCourse_rating());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // When item is clicked
+                String clickedItemCode = model.getCourse_name();  // Assuming there's a getter method in your model
+                // Pass this data to your desired function or activity
+                notifyItemClicked(clickedItemCode);
+            }
+        });
+    }
+
+    // Notify activity when an item is clicked
+    private void notifyItemClicked(String itemCode) {
+        // Here, we'll use an interface callback or LocalBroadcast to communicate back to the Activity.
+        // For simplicity, I'm just calling a static method in this example, but in a real-world scenario,
+        // consider using interfaces, LiveData, or Broadcasts for cleaner architecture.
+
+        itemsetting.onCourseItemClicked(context,itemCode);
     }
 
     @Override

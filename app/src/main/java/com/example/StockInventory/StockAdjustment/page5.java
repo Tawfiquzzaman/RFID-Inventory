@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockAdjustment.withoutrfid.AdjWithoutRFID;
+import com.example.StockInventory.StockAdjustment.withrfid.Adjwithrfid;
 import com.example.StockInventory.StockIssue.WithRFID.stockissue;
 import com.example.StockInventory.StockIssue.WithoutRFID.stockissuewithoutrfid;
 
@@ -45,8 +46,8 @@ public class page5 extends AppCompatActivity {
         ((View) CardView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i =new Intent(getApplicationContext(), stockissue.class);
-//                startActivity(i);
+                Intent i =new Intent(getApplicationContext(), Adjwithrfid.class);
+                startActivity(i);
             }
         });
 

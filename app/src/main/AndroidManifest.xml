@@ -7,16 +7,42 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- For Wi-Fi -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- For Bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30"/>
+    <!-- For Bluetooth Low Energy -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:maxSdkVersion="30"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" android:maxSdkVersion="30"/>
+    <!-- For Bluetooth  -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE"/>
+
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StoreReceiveTest">
-        <activity android:name="com.example.Util.Connection.Scanner.Scanner"></activity>
+
+
+
+        <activity android:name=".StockAdjustment.withrfid.editAdj"></activity>
+        <activity android:name=".StockAdjustment.withrfid.Adjwithrfid" />
+        <activity android:name="com.example.Util.Connection.Scanner.Scanner" />
         <activity android:name=".StockAdjustment.page5" />
         <activity android:name=".StockAdjustment.withoutrfid.AdjWithoutRFID" />
         <activity android:name=".StockIssue.WithoutRFID.stockissuewithoutrfid" />
@@ -31,13 +57,26 @@
         <activity android:name=".CodeGenerator.generatecode" />
         <activity android:name=".StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceiveEditData" />
         <activity android:name=".StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceive" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+<!--        for the mainactivity_2-->
+        <activity
+            android:name=".MainActivity_2"
+            android:exported="true">
 
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SearchBluetoothActivity" />
+
+    </application>
 </manifest>

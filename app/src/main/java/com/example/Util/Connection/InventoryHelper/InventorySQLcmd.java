@@ -2,7 +2,12 @@ package com.example.Util.Connection.InventoryHelper;
 
 public class InventorySQLcmd {
 
-    protected final static String LoadItemCode = "SELECT itemcode, BaseUOM from [dbo].[item] WHERE itemcode = ?;";
+    //protected final static String LoadItemCode = "SELECT itemcode, BaseUOM from [dbo].[item] WHERE itemcode = ?;";
+    //protected final static String LoadItemCode = "SELECT PartCode, UOM from [dbo].[PartDTL] WHERE itemcode = ?;";
+    protected final static String LoadItemCode = "SELECT PartCode, UOM.UOM from [dbo].[PartDTL] left join PartUOM on PartUOM.PartId = PartDTL.Id left join UOM on UOM.Id = PartUOM.UOMId WHERE PartCode = ?;";
+    protected final static String LoadPartIdPrismaMES = "SELECT PartDTL.Id As PartId, UOM.Id As UomId from [dbo].[PartDTL] left join PartUOM on PartUOM.PartId = PartDTL.Id left join UOM on UOM.Id = PartUOM.UOMId WHERE PartCode = ?;";
+
+
 
     protected final static String LoadRegValue = "SELECT RegValue FROM Registry WHERE  (RegID = 32768);";
     protected final static String UpdateRegValue = "UPDATE Registry SET [RegValue] = [RegValue]+3 WHERE (RegID = 32768);";
@@ -30,6 +35,12 @@ public class InventorySQLcmd {
     public static String getLoadItemCode(){
         return LoadItemCode;
     }
+    public static String getLoadPartIdPrismaMES(){
+        return LoadPartIdPrismaMES;
+    }
+    //public static String getLoadItemCodePrismaMES(){
+    //    return LoadItemCodePrismaMES;
+    //}
     public static String getLoadRegValue(){
         return LoadRegValue;
     }

@@ -1,8 +1,10 @@
 package com.example.StockInventory.StockIssue;
 
+import android.media.metrics.Event;
 import android.view.View;
 
 import com.example.Util.Connection.Connection.ConnectionClass;
+import com.example.Util.Connection.InventoryHelper.EventLog;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -44,6 +46,9 @@ public class SIsavedata {
                         StockIssueSQLcmd.getUpdateItemBatchBalQty(con, itemcode);                       //Update ItemBatchBalQty
                         StockIssueSQLcmd.getUpdateItemUOM(con, itemcode);                               //Update ItemUOM
                         StockIssueSQLcmd.getUpdateUTDStockCost(con, itemcode);                          //Update UTDStockCost
+
+                        String Doctype = "SI";
+                        EventLog.UpdateEventLog(ArrOfInt, ArrOfString, Doctype);
 
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

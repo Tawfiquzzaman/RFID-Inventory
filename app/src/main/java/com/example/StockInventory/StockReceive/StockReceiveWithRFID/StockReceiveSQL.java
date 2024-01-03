@@ -12,12 +12,41 @@ import java.sql.SQLException;
 public class StockReceiveSQL extends StockReceiveSQLcmd{
 
     @NotNull
+    public static int executeLoadDocKey(Connection con) throws SQLException {
+        String query = "SELECT TOP 1 DocKey FROM dbo.StockOutIn WHERE Type = 'SR' ORDER BY DocKey DESC";
+
+        try (PreparedStatement stmt = con.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getInt("DocKey");
+            } else {
+                // Handle the case where the result set is empty.
+                // You can return a default value or throw an exception depending on your requirements.
+                throw new SQLException("No records found for type 'SR'.");
+            }
+        }
+    }
+
+
+    @NotNull
     public static String executeLoadDocNo(Connection con) throws SQLException {
         PreparedStatement stmt = con.prepareStatement(LoadDocNo);
         ResultSet rs = stmt.executeQuery();
         String NextNumber = null;
         while (rs.next()) {
             NextNumber = rs.getString("NextNumber");
+        }
+        String DocNo = countDigit(NextNumber);
+        return DocNo;
+    }
+    @NotNull
+    public static String executeLoadDocNoPrismaMES(Connection con) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement(LoadDocNoPrismaMES);
+        ResultSet rs = stmt.executeQuery();
+        String NextNumber = null;
+        while (rs.next()) {
+            NextNumber = rs.getString("Number");
         }
         String DocNo = countDigit(NextNumber);
         return DocNo;
@@ -34,9 +63,23 @@ public class StockReceiveSQL extends StockReceiveSQLcmd{
         stmt.setString(6, InventoryHelper.getdateformat());
         stmt.executeUpdate();
     }
+    public static void executeInsertRCVPrismaMES(@NotNull Connection con, @NotNull String[] ArrOfString, @NotNull int[] ArrOfInt) throws SQLException {
+        // Use try-with-resources to ensure that the PreparedStatement is closed properly
+        try (PreparedStatement stmt = con.prepareStatement(InsertRCVPrismaMES)) {
+
+            // Constants make the code more readable
+            final int DOC_NO_INDEX = 3;
+
+            stmt.setString(1, ArrOfString[DOC_NO_INDEX]);
+            stmt.setString(2, InventoryHelper.DateUtil.getCurrentFormattedDate()); // Assuming this method gets the current formatted date
+
+            stmt.executeUpdate();
+        }
+        // No need to catch SQLException here since the method declares it throws SQLException.
+        // The caller should handle it.
+    }
 
     public static void executeInsertRCVDTL(@NotNull Connection con, @NotNull String[] ArrOfString, @NotNull int[] ArrOfInt) throws SQLException {
-
         PreparedStatement stmt = con.prepareStatement(InsertRCVDTL);
         stmt.setInt(1, ArrOfInt[1]);
         stmt.setInt(2, ArrOfInt[0]);
@@ -44,6 +87,27 @@ public class StockReceiveSQL extends StockReceiveSQLcmd{
         stmt.setString(4, ArrOfString[2]);
         stmt.executeUpdate();
     }
+
+    //INSERT INTO [dbo].[StockOutInDTL] ([PartId],[Quantity],[UOMId],[Date],[Type],[DocKey])VALUES(?,'1',?,?,'SR',?)";
+
+    public static void executeInsertRCVDTLPrismaMES(Connection con, String[] dataStrings, int[] dataInts) throws SQLException {
+        if (con == null || dataStrings == null || dataInts == null) {
+            throw new IllegalArgumentException("Parameters cannot be null");
+        }
+
+        String insertQuery = InsertRCVDTLPrismaMES; // Replace with your actual query
+        try (PreparedStatement stmt = con.prepareStatement(insertQuery)) {
+            stmt.setInt(1, dataInts[0]); // Assuming PartId is at index 1
+            stmt.setInt(2, dataInts[1]); // Assuming UOMId is at index 2
+            stmt.setString(3, InventoryHelper.DateUtil.getCurrentFormattedDate()); // Date
+            stmt.setInt(4, dataInts[2]); // Assuming DocKey is at index 3
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            // Consider using a logging library to log this exception.
+            throw e;
+        }
+    }
+
 
     public static void executeInsertStockDTL(@NotNull Connection con, @NotNull String[] ArrOfString, @NotNull int[] ArrOfInt) throws SQLException {
 

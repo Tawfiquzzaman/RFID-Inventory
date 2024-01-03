@@ -8,15 +8,16 @@ android {
 
     defaultConfig {
         applicationId "com.example.storereceivetest"
-        minSdkVersion 19
+        //minSdkVersion 19        -> original from Aw
+        minSdkVersion 26 //-> change from 19 to 21 due to brother sdk // change from 21->23->26 because RequirePermission in BlueTooth CT230B
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-//        ndk {
-//            moduleName "serial_port"
-//            ldLibs "log"
-//            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
-//        }
+      ndk {
+            moduleName "serial_port"
+            ldLibs "log"
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -34,7 +35,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -43,16 +43,27 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.5.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':lib')
+    implementation files('lcprintsdk-release.aar')
+    implementation files('BrotherPrintLibrary.aar')
+    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation fileTree(dir: 'D:\\newRFID\\RFIDVer1.3.0.0\\lib', include: ['*.aar', '*.jar'], exclude: [])
+    //implementation files('ctaiotCtpl1.0.0.jar')
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    implementation 'com.squareup.okhttp3:okhttp'
+
     implementation "com.github.yuriy-budiyev:code-scanner:2.3.2"
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //implementation fileTree(include: ['*.aar', '*.jar'], exclude: [], dir: 'libs')
+    //implementation 'androidx.appcompat:appcompat:1.4.1'
+    //implementation 'com.google.android.material:material:1.5.0'
+    //implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+//
 }

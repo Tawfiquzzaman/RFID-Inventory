@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.NavigationDrawer.SetSerialNo;
+import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.StockReceive.StockReceiveWithRFID.page1;
 import com.example.StockInventory.StockReceive.StockReceiveWithRFID.stockreceivewithrfid.StockReceiveEditData;
 import com.example.Util.Connection.Connection.ConnectionClass;
@@ -124,13 +125,19 @@ public class WithoutRFIDTag extends AppCompatActivity {
                     String ItemCode = InventoryHelper.ItemCodeValidation(itemcode.getText().toString());
                     if (ItemCode != null) {
 
-                        InventorySaveData.savedata(output.getText().toString(), itemcode.getText().toString(), v, DocType);
-                        File file = new File(WithoutRFIDTag.this.getFilesDir(), "SerialNo");
-                        String value = output.getText().toString();
                         try {
+                            InventorySaveData.savedata(output.getText().toString(), itemcode.getText().toString(), v, DocType);
+                        } catch (Exception e) {
+                            // Log or show an error message.
+                            return; // Exit the onClick method without executing further.
+                        }
+                        try{
+
+                            File file = new File(WithoutRFIDTag.this.getFilesDir(), "SerialNo");
+                            String value = output.getText().toString();
                             FileHelper.writeFile(file, value);
-                            PrintHelper printHelper = new PrintHelper(getApplicationContext());
-                            PrinterHelper.doPrint(printHelper);
+//                            PrintHelper printHelper = new PrintHelper(getApplicationContext());
+//                            PrinterHelper.doPrint(printHelper);
 
                             builder.setTitle("Stock Receive");
                             builder.setMessage("Your data has been recorded");
@@ -138,7 +145,10 @@ public class WithoutRFIDTag extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(WithoutRFIDTag.this, "Stock Receive Done", Toast.LENGTH_LONG).show();
-                                    finish();
+                                    //Intent i = new Intent(getApplicationContext(), page1.class);
+                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(i);
                                 }
                             });
                             AlertDialog alertDialog = builder.create();
