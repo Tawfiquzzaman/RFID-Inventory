@@ -15,7 +15,7 @@ public class ConnectionClass {
     public static String un = "sa";
     public static String pass ="rs6663";
     //public static String db = "AED_MOBILE";
-    public static String db = "MES_Developer_EM19";
+    public static String db = "MES_Developer_EM30_2";
     //public static String integratedsystem = "Autocount2";
     public static String integratedsystem = "PrismaMES";
 
@@ -28,7 +28,7 @@ public class ConnectionClass {
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             //connectionURL = "jdbc:jtds:sqlserver://" + server + "/" + database + ";user=" + user + ";password=" + password + ";";
-            connectionURL = "jdbc:jtds:sqlserver://192.168.0.88:1433/MES_Developer_EM19";
+            connectionURL = "jdbc:jtds:sqlserver://192.168.0.88:1433/MES_Developer_EM30_2";
             String username1 = "sa";
             String password1 = "rs6663";
             Log.e("SQL", connectionURL);

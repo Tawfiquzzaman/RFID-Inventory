@@ -7,7 +7,8 @@
     android:background="@drawable/_2501"
     tools:context=".ListItemCode.itemsetting">
 
-    
+
+
 
     <View
         android:id="@+id/view"
@@ -28,6 +29,26 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="341dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="12dp"
+        android:background="#80FFFFFF"
+        android:iconifiedByDefault="false"
+        android:padding="7dp"
+        android:queryHint="Search here..."
+        android:searchIcon="@drawable/searchicon"
+        app:layout_constraintCircleRadius="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backbutton" />
+
+
+
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -43,7 +64,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <RelativeLayout

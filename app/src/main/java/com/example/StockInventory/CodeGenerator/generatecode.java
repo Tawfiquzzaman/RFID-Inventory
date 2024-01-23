@@ -517,87 +517,85 @@ private String itemCode;
         printerDriver.closeChannel();
     }
 
-    private void doPrint() {
-        PrintHelper printHelper = new PrintHelper(this);
-        printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        printHelper.printBitmap("Print Bitmap", bitmap);
+    public static void doPrint(Context context, String itemCode) {
+        // ... existing code ...
+
+        // Generate the barcode bitmap
+        Bitmap barcodeBitmap = generateBarcodeBitmap(itemCode);
+
+
+        // Check if the bitmap generation was successful
+        if (barcodeBitmap != null) {
+            // Print the barcode bitmap using PrintUtil
+
+            PrintUtil printUtil = PrintUtil.getInstance(context);
+            int return_distance = 0;
+            PrintUtil.setUnwindPaperLen(return_distance);// Set paper return distance
+            PrintUtil.setUnwindPaperLen(return_distance);// Set paper return distance
+            PrintUtil.printEnableMark(true);// Open Black Label
+            PrintUtil.printConcentration(25);// Set concentration
+
+            //PrintUtil.printBitmap(PrintConfig.Align.ALIGN_CENTER, barcodeBitmap);
+            PrintUtil.printBitmap(barcodeBitmap);
+
+
+
+
+            // Additional print settings (if needed)
+            //printUtil.setUnwindPaperLen(return_distance);
+            // printUtil.printConcentration(25);
+
+            // Execute the print command
+            printUtil.printGoToNextMark(); // This line sends the print job to the printer
+        } else {
+            // Handle the error case where the barcode bitmap could not be generated
+            Toast.makeText(context, "Error generating barcode for item code: " + itemCode, Toast.LENGTH_LONG).show();
+        }
     }
 
-    public static void doPrint(Context context, String itemCode) {
-        /*
-        Exception Handling:
-We'll display the exception message in a Toast.
-
-Null or Empty Check:
-We'll check both for null and emptiness.
-
-Text Overlapping:
-I'll slightly adjust the positioning to reduce the chance of overlap.
-
-Memory Management:
-Recycling the intermediate bitmap once done.
-
-Paint Settings:
-Centering the text.
-
-Magic Numbers:
-I'll introduce constants for these values.
-
-Testing:
-This is not something that can be demonstrated within the code directly, but you should manually test the function on various devices as mentioned.
-
-         */
-
-            final int BARCODE_WIDTH = 400;
-            final int BARCODE_HEIGHT = 150;
-            final int OUTPUT_WIDTH = 400;
-            final int OUTPUT_HEIGHT = 300;
-            final int TEXT_SIZE = 30;
-
-            if (itemCode == null || itemCode.isEmpty()) {
-                Toast.makeText(context, "Item code is empty or null!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Toast.makeText(context, "Prepare Print your ItemCode: " + itemCode, Toast.LENGTH_SHORT).show();
+    private static Bitmap generateBarcodeBitmap(String itemCode) {
+        try {
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            int barcodeWidth = 400;
+            int barcodeHeight = 150;
+            int combinedHeight = 200; // Adjust this value as needed
 
-            try {
-                BitMatrix bitMatrix = multiFormatWriter.encode(itemCode, BarcodeFormat.CODE_128, BARCODE_WIDTH, BARCODE_HEIGHT);
-                int width = bitMatrix.getWidth();
-                int height = bitMatrix.getHeight();
-                Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            // Generate the BitMatrix for the barcode
+            BitMatrix bitMatrix = multiFormatWriter.encode(itemCode, BarcodeFormat.CODE_128, barcodeWidth, barcodeHeight);
 
-                for (int x = 0; x < width; x++) {
-                    for (int y = 0; y < height; y++) {
-                        bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                    }
+            // Create a bitmap from the BitMatrix
+            Bitmap barcodeBitmap = Bitmap.createBitmap(barcodeWidth, barcodeHeight, Bitmap.Config.RGB_565);
+            for (int x = 0; x < barcodeWidth; x++) {
+                for (int y = 0; y < barcodeHeight; y++) {
+                    barcodeBitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
-
-                Bitmap output = Bitmap.createBitmap(OUTPUT_WIDTH, OUTPUT_HEIGHT, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(output);
-                Paint paint = new Paint();
-                paint.setTextSize(TEXT_SIZE);
-                paint.setColor(Color.BLACK);
-                paint.setTextAlign(Paint.Align.CENTER);
-
-                int yOffset = (OUTPUT_HEIGHT - bitmap.getHeight()) / 2;
-                float textYOffset = paint.getTextSize() + 10; // 10 is a margin
-                canvas.drawText(itemCode, OUTPUT_WIDTH / 2, textYOffset, paint); // adjusted for center alignment
-                canvas.drawBitmap(bitmap, 0, yOffset, null);
-                canvas.drawText(itemCode, OUTPUT_WIDTH / 2, OUTPUT_HEIGHT - 10, paint); // adjusted for center alignment
-
-                bitmap.recycle(); // Recycle the bitmap we're done using
-
-                PrintHelper printHelper = new PrintHelper(context);
-                printHelper.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-                printHelper.printBitmap("Print Bitmap", output);
-                Toast.makeText(context, "Process Print your ItemCode: " + itemCode, Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Toast.makeText(context, "Error printing: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                e.printStackTrace();
             }
+
+            // Create a combined bitmap to include barcode and text
+            Bitmap combinedBitmap = Bitmap.createBitmap(barcodeWidth, combinedHeight, Bitmap.Config.RGB_565);
+            Canvas canvas = new Canvas(combinedBitmap);
+            canvas.drawColor(Color.WHITE);
+            canvas.drawBitmap(barcodeBitmap, 0, 0, null);
+
+            // Draw the itemCode text below the barcode
+            Paint textPaint = new Paint();
+            textPaint.setColor(Color.BLACK);
+            textPaint.setTextSize(20); // Set the text size
+            textPaint.setTextAlign(Paint.Align.CENTER); // Center align text
+
+
+            // Calculate the position to draw the text
+            float textXPosition = barcodeWidth / 2;
+            float textYPosition = barcodeHeight + 20;
+            // Adjust the Y position as needed
+            canvas.drawText(itemCode, textXPosition, textYPosition, textPaint);
+
+            return combinedBitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+    }
+
 }
 
