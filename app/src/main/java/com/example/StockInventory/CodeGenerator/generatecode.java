@@ -54,11 +54,18 @@ public class generatecode extends AppCompatActivity {
     //private EditText editText1;
     private ImageView imageView;
     private Button printcodebutton;
+    private Button Scanbutton;
+
     private ImageButton backbutton;
     private Bitmap codebitmap = null;
-    private Bitmap finalbitmap = null;
-    private Bitmap textbitmap = null;
-    private Bitmap textbitmap1 = null;
+    private final Bitmap finalbitmap = null;
+    private final Bitmap textbitmap = null;
+    private final Bitmap textbitmap1 = null;
+
+    protected final String DocType = "SR3";
+    protected final String DocType1 = "TF";
+
+
 
 
 
@@ -119,14 +126,14 @@ public class generatecode extends AppCompatActivity {
     */
     int machine=5502; //machine configuration if for RFID orange black machine-update
 
-private String itemCode;
+    private String itemCode;
     public void QRCodeButton(View view) {
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         String itemCode = editText.getText().toString();
         if (!itemCode.isEmpty()) {
             try {
-                BitMatrix bitMatrix = qrCodeWriter.encode(itemCode, BarcodeFormat.QR_CODE, 400, 250);
+                BitMatrix bitMatrix = qrCodeWriter.encode(itemCode, BarcodeFormat.QR_CODE, 300, 150);
                 Bitmap bitmap = createBitmapFromBitMatrix(bitMatrix);
                 Bitmap finalBitmap = null;
                 if (machine == 5502) {
@@ -169,6 +176,9 @@ private String itemCode;
         imageView = findViewById(R.id.imageView);//6
         printcodebutton = findViewById(R.id.printcodebutton);//6
 
+        //2024-01-29 Tawfiq add
+        Scanbutton = findViewById(R.id.Scanbutton);
+
 
         backbutton = findViewById(R.id.backbutton);
         backbutton.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +192,18 @@ private String itemCode;
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
                 Toast.makeText(generatecode.this, "Return Main Page", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Scanbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), Scanner.class);
+                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                i.putExtra("DocType", DocType1);
+                startActivity(i);
             }
         });
 
@@ -238,7 +260,7 @@ private String itemCode;
                 String centerAlignmentText = createSpacedText(itemCode,7); //set here a value by calculating (totalWdith/2)
                 String rightAlignmentText = createSpacedText(itemCode,paddingRight);
 
-                PrintUtil.printLine(2);
+                PrintUtil.printLine(1);
                 PrintUtil.printText(PrintConfig.Align.ALIGN_LEFT,25,true,false,leftAlignmentText); //Printing Text which is LEFT ALIGNED
                 PrintUtil.printText(PrintConfig.Align.ALIGN_CENTER,25, true, false,centerAlignmentText); //Printing Text which is CENTER ALIGNED
                 PrintUtil.printText(PrintConfig.Align.ALIGN_RIGHT,25,true,false,rightAlignmentText);  //Printing Text which is RIGHT ALIGNED
@@ -271,12 +293,10 @@ private String itemCode;
 
 
 
-                String DocType = "SR3";
+
+
                 // Assuming keyCode 24 is for VOLUME_UP
-                Intent i = new Intent(getApplicationContext(), Scanner.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
-                i.putExtra("DocType", DocType);
-                startActivity(i);
+
 
 
 
@@ -285,7 +305,11 @@ private String itemCode;
 
             }
         });
+
+
     }
+
+
 
 
     //Function Declared for adjusting the Left, right, Center alignment of Text.
@@ -485,12 +509,12 @@ private String itemCode;
 
     private void connectAndPrint(String itemCode) {
         try {
-        // Your existing code
+            // Your existing code
 
-        Channel channel = Channel.newWifiChannel("192.168.50.40");
-        PrinterDriverGenerateResult result = PrinterDriverGenerator.openChannel(channel);
+            Channel channel = Channel.newWifiChannel("192.168.50.40");
+            PrinterDriverGenerateResult result = PrinterDriverGenerator.openChannel(channel);
 
-        // Rest of your code
+            // Rest of your code
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("PrinterException", "Error occurred", e);
@@ -598,4 +622,3 @@ private String itemCode;
     }
 
 }
-

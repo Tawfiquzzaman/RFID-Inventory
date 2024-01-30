@@ -337,7 +337,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Item Setting"
+                            android:text="Items"
                             android:textAllCaps="true"
                             android:textColor="@color/green_500"
                             android:textSize="14sp"

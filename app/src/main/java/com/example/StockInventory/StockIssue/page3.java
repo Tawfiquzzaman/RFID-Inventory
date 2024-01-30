@@ -56,5 +56,14 @@ public class page3 extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        contributeCard: CardView = findViewById(R.id.manualentry);
+        ((View) CardView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getApplicationContext(), ManualEntryStockIssue.class);
+                startActivity(i);
+            }
+        });
     }
 }

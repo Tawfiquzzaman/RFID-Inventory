@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionClass {
-    public static String ip = "192.168.0.88:1433"; //192.168.0.88\SQLEXPRESS01,1433
+    public static String ip = "192.168.1.92"; //192.168.0.88\SQLEXPRESS01,1433
     public static String un = "sa";
     public static String pass ="rs6663";
     //public static String db = "AED_MOBILE";
@@ -28,7 +28,7 @@ public class ConnectionClass {
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             //connectionURL = "jdbc:jtds:sqlserver://" + server + "/" + database + ";user=" + user + ";password=" + password + ";";
-            connectionURL = "jdbc:jtds:sqlserver://192.168.0.88:1433/MES_Developer_EM30_2";
+            connectionURL = "jdbc:jtds:sqlserver://192.168.1.92/MES_Developer_EM30_2";
             String username1 = "sa";
             String password1 = "rs6663";
             Log.e("SQL", connectionURL);

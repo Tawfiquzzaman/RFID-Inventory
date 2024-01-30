@@ -58,9 +58,8 @@
 
     <Button
         android:id="@+id/barbutton"
-        android:layout_width="132dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="46dp"
+        android:layout_width="139dp"
+        android:layout_height="57dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="23dp"
         android:onClick="barCodeButton"
@@ -68,56 +67,38 @@
         app:backgroundTint="@color/green_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/qrbutton"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:layout_constraintVertical_bias="0.012" />
 
     <Button
         android:id="@+id/qrbutton"
-        android:layout_width="130dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="57dp"
+        android:layout_width="139dp"
+        android:layout_height="57dp"
         android:onClick="QRCodeButton"
         android:text="QR Code"
         app:backgroundTint="@color/green_500"
         app:layout_constraintBaseline_toBaselineOf="@+id/barbutton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
         app:layout_constraintStart_toEndOf="@+id/barbutton" />
 
     <Button
         android:id="@+id/printbutton"
-        android:layout_width="309dp"
-        android:layout_height="45dp"
-        android:text="Print"
+        android:layout_width="304dp"
+        android:layout_height="47dp"
+        android:text="Print Mobility"
         app:backgroundTint="@color/green_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/qrbutton"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/barbutton"
         app:layout_constraintTop_toBottomOf="@+id/barbutton"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="315dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Enter_ItemCode_here"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/printbutton"
-        app:layout_constraintTop_toBottomOf="@+id/printbutton"
-        tools:visibility="invisible" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/viewBotton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/wave__2_"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,15 +106,29 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/printcodebutton"
-        android:layout_width="309dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="48dp"
+        android:id="@+id/Scanbutton"
+        android:layout_width="304dp"
+        android:layout_height="47dp"
+        android:text="Scan"
 
-        android:text="Print With Integrated Printer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/printcodebutton"
+        app:layout_constraintStart_toStartOf="@+id/printcodebutton"
+        app:layout_constraintTop_toBottomOf="@+id/printcodebutton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/printcodebutton"
+        android:layout_width="304dp"
+        android:layout_height="47dp"
+
+        android:text="Print NF5502"
         app:layout_constraintBottom_toBottomOf="@+id/viewBotton"
-        app:layout_constraintEnd_toEndOf="@+id/viewBotton"
-        app:layout_constraintTop_toTopOf="@+id/viewBotton"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintEnd_toEndOf="@+id/printbutton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/printbutton"
+        app:layout_constraintTop_toBottomOf="@+id/printbutton"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

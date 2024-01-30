@@ -58,7 +58,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
-        android:text="ItemCode"
+        android:text="Items"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"

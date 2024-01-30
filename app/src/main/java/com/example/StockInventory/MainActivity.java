@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity{
                 break;
 
             case R.id.moreinformation:
-                String url = "https://www.prisma-tech4u.com/pages/about";
+                String url = "https://www.prisma-tech4u.com/pages/pages_id/31465/";
                 Intent i3 =new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(i3);
                 break;

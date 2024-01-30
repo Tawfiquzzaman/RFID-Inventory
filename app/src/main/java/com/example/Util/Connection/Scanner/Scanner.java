@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.StockInventory.CodeGenerator.generatecode;
 import com.example.StockInventory.MainActivity;
 import com.example.StockInventory.R;
 import com.example.StockInventory.StockAdjustment.withoutrfid.AdjWithoutRFID;
@@ -98,6 +99,12 @@ public class Scanner extends AppCompatActivity {
                         }else if(DocType.matches("SR2")){
                             Toast.makeText(Scanner.this, result.getText(), Toast.LENGTH_SHORT).show(); //Show Toast
                             Intent i =new Intent(getApplicationContext(), WithoutRFIDTag.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            i.putExtra("Itemcode",result.getText());
+                            startActivity(i);
+                        }else if(DocType.matches("TF")){
+                            Toast.makeText(Scanner.this, result.getText(), Toast.LENGTH_SHORT).show(); //Show Toast
+                            Intent i =new Intent(getApplicationContext(), generatecode.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
                             i.putExtra("Itemcode",result.getText());
                             startActivity(i);

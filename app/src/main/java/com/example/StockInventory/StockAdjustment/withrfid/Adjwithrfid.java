@@ -1,8 +1,12 @@
 package com.example.StockInventory.StockAdjustment.withrfid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -133,7 +137,10 @@ public class Adjwithrfid extends AppCompatActivity implements View.OnClickListen
 
         getRequest = (Button)findViewById(R.id.button4); //By aw
         getRequest.setOnClickListener((View.OnClickListener) this);
+
+
     }
+
 
 
     @Override
